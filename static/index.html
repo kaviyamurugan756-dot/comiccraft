@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f6ef">
+  <title>ComicCraft - make a little magic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ComicCraft home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span>comiccraft</span>
+    </a>
+    <div class="topbar-center"><span class="live-dot"></span><span id="service-status">STUDIO READY</span></div>
+    <button class="button button-export" id="export-button" type="button" disabled>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+      <span>Export PDF</span>
+    </button>
+  </header>
+
+  <main class="workspace">
+    <aside class="workbench" aria-label="Comic settings">
+      <div class="eyebrow"><span>YOUR STORY, YOUR WORLD</span><span class="eyebrow-rule"></span></div>
+      <h1>Make a little<br><span>comic magic.</span></h1>
+      <p class="intro">One idea in. A whole world out.</p>
+
+      <form id="comic-form">
+        <label class="field-label" for="prompt">THE STORY SEED <span>01</span></label>
+        <textarea id="prompt" name="prompt" maxlength="1200" required minlength="8" placeholder="A brave fox finds a mysterious door in the oldest tree...">A brave fox discovers a tiny lighthouse hidden deep in an enchanted forest.</textarea>
+        <div class="field-meta"><span>Start anywhere. Wonder usually follows.</span><span id="prompt-count">0 / 1200</span></div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="character">HERO NAME <span>02</span></label>
+            <input id="character" name="character" maxlength="80" value="Milo" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="setting">SETTING <span>03</span></label>
+            <input id="setting" name="setting" maxlength="120" value="Enchanted forest" required>
+          </div>
+        </div>
+
+        <div class="field-row select-row">
+          <div class="field-group">
+            <label class="field-label" for="tone">THE MOOD</label>
+            <select id="tone" name="tone">
+              <option>Heartfelt</option><option>Funny</option><option>Adventurous</option><option>Mysterious</option><option>Dramatic</option><option>Dreamy</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="art-style">ART DIRECTION</label>
+            <select id="art-style" name="art_style">
+              <option>Comic book</option><option>Anime</option><option>Watercolor</option><option>Pixel art</option><option>Storybook</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="panel-choice">
+          <legend class="field-label">PANELS</legend>
+          <div class="segmented" role="group" aria-label="Number of panels">
+            <button type="button" class="segment" data-panels="3" aria-pressed="false">03</button>
+            <button type="button" class="segment is-selected" data-panels="4" aria-pressed="true">04</button>
+            <button type="button" class="segment" data-panels="5" aria-pressed="false">05</button>
+            <button type="button" class="segment" data-panels="6" aria-pressed="false">06</button>
+          </div>
+        </fieldset>
+
+        <button class="button button-create" id="create-button" type="submit">
+          <span class="button-create-label">Create my comic</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <p class="form-footnote"><span class="sparkle">✳</span> Every good story starts with a what if.</p>
+      </form>
+    </aside>
+
+    <section class="storyboard" aria-label="Comic preview">
+      <div class="board-topline">
+        <div><span class="board-kicker">THE STORYBOARD</span><span class="board-divider">/</span><span id="board-count">AWAITING YOUR IDEA</span></div>
+        <div class="board-tools"><span id="provider-label">COMICCRAFT STUDIO</span><span class="board-status" id="board-status">READY</span></div>
+      </div>
+      <div id="storyboard-content" class="storyboard-content">
+        <div class="empty-state">
+          <div class="empty-art" aria-hidden="true">
+            <div class="sun-shape"></div><div class="empty-hill hill-back"></div><div class="empty-hill hill-front"></div>
+            <div class="empty-tree tree-left"><i></i></div><div class="empty-tree tree-right"><i></i></div>
+            <div class="empty-hero"><i class="ear ear-left"></i><i class="ear ear-right"></i><i class="eye eye-left"></i><i class="eye eye-right"></i><i class="hero-smile"></i><i class="hero-body"></i></div>
+            <span class="spark spark-one">✳</span><span class="spark spark-two">✦</span><span class="spark spark-three">✧</span>
+            <span class="art-label">A NEW WORLD<br>IS JUST A PAGE AWAY</span>
+          </div>
+          <div class="empty-copy"><span class="empty-index">01 — THE BEGINNING</span><h2>Blank page.<br><em>Infinite possibility.</em></h2><p>Give your hero a reason to leave home.</p></div>
+        </div>
+      </div>
+      <footer class="board-footer"><span>MADE OF IMAGINATION</span><span id="footer-page">COMICCRAFT  /  001</span></footer>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
