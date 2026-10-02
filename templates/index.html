@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="eyebrow">✨ Turn an idea into a comic</span>
+    <h1>Your story. <span>Your panels.</span> Your world.</h1>
+    <p>Describe your idea and ComicCraft creates a five-panel story with narration, dialogue, illustrations and a downloadable PDF.</p>
+  </div>
+</section>
+{% if error %}<div class="alert">{{ error }}</div>{% endif %}
+<form class="card form-card" action="/generate" method="post">
+  <label>Story Prompt<textarea name="story_prompt" required placeholder="A brave fox exploring an enchanted forest..."></textarea></label>
+  <div class="grid two">
+    <label>Main Character Name<input name="character_name" required placeholder="Luna"></label>
+    <label>Setting<select name="setting"><option>Enchanted forest</option><option>School</option><option>Space station</option><option>Futuristic city</option><option>Underwater kingdom</option></select></label>
+  </div>
+  <div class="grid two">
+    <label>Story Tone<select name="tone"><option>Light-hearted</option><option>Dramatic</option><option>Poetic</option><option>Funny</option><option>Adventure</option></select></label>
+    <label>Art Style<select name="art_style"><option>Comic book</option><option>Anime</option><option>Pixel art</option><option>Realistic</option><option>Watercolor</option></select></label>
+  </div>
+  <button class="primary" type="submit">🚀 Create My Comic</button>
+  <p class="hint">Tip: add Gemini and Hugging Face keys in <code>.env</code>. Without them, the app runs in a safe demo mode with generated placeholder artwork.</p>
+</form>
+{% endblock %}

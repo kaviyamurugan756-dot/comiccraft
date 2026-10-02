@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="result-head">
+  <div><span class="eyebrow">COMIC PREVIEW</span><h1>{{ title }}</h1></div>
+  <a class="primary button-link" href="{{ pdf_path }}" download>⬇ Download PDF</a>
+</div>
+<div class="comic-grid">
+{% for panel in layout %}
+  <article class="panel card">
+    <div class="panel-number">PANEL {{ panel.panel_number }}</div>
+    <h2>{{ panel.title }}</h2>
+    <img src="{{ panel.image_path }}" alt="Panel {{ panel.panel_number }} illustration">
+    <p class="scene">{{ panel.scene_description }}</p>
+    <div class="bubble"><strong>CAPTION</strong><p>{{ panel.caption }}</p></div>
+    <div class="story"><strong>NARRATION</strong><p>{{ panel.narration }}</p></div>
+    <div class="dialogue"><strong>DIALOGUE</strong><p>{{ panel.dialogue }}</p></div>
+    <details><summary>Image prompt</summary><p>{{ panel.image_prompt }}</p></details>
+  </article>
+{% endfor %}
+</div>
+<div class="bottom-actions"><a class="secondary" href="/">← Create another comic</a><a class="primary button-link" href="{{ pdf_path }}" download>Download Your Comic as PDF</a></div>
+{% endblock %}
